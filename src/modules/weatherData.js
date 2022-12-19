@@ -1,37 +1,42 @@
 import { roundToDp } from './helperFuncs';
+import DOM from './DOM';
 
-const KEY = 'e139145074965f3b3ff44caf7777fb07';
+const OPENWEATHER_KEY = 'e139145074965f3b3ff44caf7777fb07';
+const WINDY_KEY = '2awMRGkgQOECeIy2WTJeQxCUKVgHYa5W';
 
-export const getGeographicalCoordinates = async locationName => {
+export const getGeographicalCoordinates = async (locationName, units) => {
     try {
-        const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${KEY}`);
+        const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${OPENWEATHER_KEY}&units=${units}`);
         const data = await response.json();
         const lat = roundToDp(data[0].lat, 2);
         const lon = roundToDp(data[0].lon, 2);
         return [lat, lon];
     } catch (err) {
+        DOM.renderHeaderInfoError();
         throw new Error((`${locationName} is an invalid location.`));
     }
 }
 
-export const getFiveDayForecastData = async (geographicalCoords, units = 'metric') => {
+export const getFiveDayForecastData = async (geographicalCoords, units) => {
     try {
         const [lat, lon] = geographicalCoords;
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${KEY}&units=${units}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=${units}`);
         const data = await response.json();
         return data;
     } catch (err) {
+        DOM.renderHeaderInfoError();
         throw new Error((`Unable to parse geographical coordinates. Check if you input a valid location.`));
     }
 }
 
-export const getCurrentWeatherData = async (geographicalCoords, units = 'metric') => {
+export const getCurrentWeatherData = async (geographicalCoords, units) => {
     try {
         const [lat, lon] = geographicalCoords;
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${KEY}&units=${units}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=${units}`);
         const data = await response.json();
         return data;
     } catch {
+        DOM.renderHeaderInfoError();
         throw new Error((`Unable to parse geographical coordinates. Check if you input a valid location.`));
     }
 }
@@ -62,7 +67,7 @@ export const determineWindDirection = windDeg => {
             return 'W';
         case windDeg < 330:
             return 'NW';
-        case windDeg < 360:
+        case windDeg <= 360:
             return 'N';
     }
 }
