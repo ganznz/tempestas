@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tempestas</title>
     <script src="https://kit.fontawesome.com/8d1c439b9a.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
 </head>
 <body>
     <header>
@@ -39,10 +41,6 @@
                             <p>Sunset</p>
                             <p>00:00</p>
                         </div>
-                        <!-- <div class="minor-weather-info-category precipitation">
-                            <p>Precipitation</p>
-                            <p>0%</p>
-                        </div> -->
                         <div class="minor-weather-info-category wind">
                             <p>Wind</p>
                             <p>0° NW</p>
@@ -61,10 +59,6 @@
                             <p>Humidity</p>
                             <p>0%</p>
                         </div>
-                        <!-- <div class="minor-weather-info-category uv-index">
-                            <p>UV Index</p>
-                            <p>0</p>
-                        </div> -->
                     </div>
             </div>
         </section>
@@ -72,47 +66,85 @@
             <h3>5 Day Forecast</h3>
             <ul>
                 <li>
-                    <h4>day</h4>
-                    <div class="day-forecast-details">
-                        <p class="day-forecast-temp">0°</p>
-                        <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
-                        <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                    <div class="forecast-details-top-half">
+                        <h4>day</h4>
+                        <div class="day-forecast-details">
+                            <p class="day-forecast-temp">0°</p>
+                            <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
+                            <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                        </div>
+                    </div>
+                    <div class="forecast-details-bottom-half">
+                        <p class="day-forecast-wind">Wind: --</p>
+                        <p class="day-forecast-visibility">Visibility: --</p>
+                        <p class="day-forecast-humidity">Humidity: --</p>
                     </div>
                 </li>
                 <li>
-                    <h4>day</h4>
-                    <div class="day-forecast-details">
-                        <p class="day-forecast-temp">0°</p>
-                        <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
-                        <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                    <div class="forecast-details-top-half">
+                        <h4>day</h4>
+                        <div class="day-forecast-details">
+                            <p class="day-forecast-temp">0°</p>
+                            <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
+                            <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                        </div>
+                    </div>
+                    <div class="forecast-details-bottom-half">
+                        <p class="day-forecast-wind">Wind: --</p>
+                        <p class="day-forecast-visibility">Visibility: --</p>
+                        <p class="day-forecast-humidity">Humidity: --</p>
                     </div>
                 </li>
                 <li>
-                    <h4>day</h4>
-                    <div class="day-forecast-details">
-                        <p class="day-forecast-temp">0°</p>
-                        <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
-                        <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                    <div class="forecast-details-top-half">
+                        <h4>day</h4>
+                        <div class="day-forecast-details">
+                            <p class="day-forecast-temp">0°</p>
+                            <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
+                            <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                        </div>
+                    </div>
+                    <div class="forecast-details-bottom-half">
+                        <p class="day-forecast-wind">Wind: --</p>
+                        <p class="day-forecast-visibility">Visibility: --</p>
+                        <p class="day-forecast-humidity">Humidity: --</p>
                     </div>
                 </li>
                 <li>
-                    <h4>day</h4>
-                    <div class="day-forecast-details">
-                        <p class="day-forecast-temp">0°</p>
-                        <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
-                        <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                    <div class="forecast-details-top-half">
+                        <h4>day</h4>
+                        <div class="day-forecast-details">
+                            <p class="day-forecast-temp">0°</p>
+                            <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
+                            <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                        </div>
+                    </div>
+                    <div class="forecast-details-bottom-half">
+                        <p class="day-forecast-wind">Wind: --</p>
+                        <p class="day-forecast-visibility">Visibility: --</p>
+                        <p class="day-forecast-humidity">Humidity: --</p>
                     </div>
                 </li>
                 <li>
-                    <h4>day</h4>
-                    <div class="day-forecast-details">
-                        <p class="day-forecast-temp">0°</p>
-                        <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
-                        <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                    <div class="forecast-details-top-half">
+                        <h4>day</h4>
+                        <div class="day-forecast-details">
+                            <p class="day-forecast-temp">0°</p>
+                            <p class="day-forecast-precipitation"><i class="fa-solid fa-cloud-rain fa-lg"></i>0%</p>
+                            <p class="day-forecast-cloudiness"><i class="fa-solid fa-cloud"></i>0%</p>
+                        </div>
+                    </div>
+                    <div class="forecast-details-bottom-half">
+                        <p class="day-forecast-wind">Wind: --</p>
+                        <p class="day-forecast-visibility">Visibility: --</p>
+                        <p class="day-forecast-humidity">Humidity: --</p>
                     </div>
                 </li>
             </ul>
         </section>
+        <footer>
+            <a href="https://github.com/ganznz" target="_blank">Made by Ganz</a>
+        </footer>
     </main>
 
     <script src="main.js"></script>
