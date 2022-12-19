@@ -36,6 +36,12 @@ section.five-day-forecast {
     flex-direction: column;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 
 main > section {
     padding: calc(var(--primary-padding) * 2);
@@ -102,6 +108,7 @@ section.weather-info-today {
     gap: 50px;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 section.weather-info-today .main-weather-info-container {
@@ -173,6 +180,7 @@ section.five-day-forecast {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
 }
 
 section.five-day-forecast > h3 {
@@ -185,38 +193,46 @@ section.five-day-forecast ul {
     padding: var(--primary-padding);
     font-size: 1.2rem;
     width: 40%;
-    min-width: 320px;
+    min-width: 400px;
     max-width: 600px;
     border: 5px solid var(--grey-light);
     border-radius: 5px;
 }
 
-section.five-day-forecast ul li h4 {
+section.five-day-forecast ul li > * {
+    pointer-events: none;
+}
+
+section.five-day-forecast ul li .forecast-details-top-half h4 {
     margin-right: auto;
 }
 
-section.five-day-forecast ul li .day-forecast-details p > svg {
+section.five-day-forecast ul li .forecast-details-top-half .day-forecast-details p > svg {
     margin-right: 5px;
 }
 
-section.five-day-forecast ul li h4,
-section.five-day-forecast ul li .day-forecast-details .day-forecast-cloudiness {
+section.five-day-forecast ul li .forecast-details-top-half h4,
+section.five-day-forecast ul li .forecast-details-top-half .day-forecast-details .day-forecast-cloudiness {
     font-weight: 400;
     color: var(--grey);
+    width: 80px;
 }
 
-section.five-day-forecast ul li .day-forecast-details .day-forecast-temp {
+section.five-day-forecast ul li .forecast-details-top-half .day-forecast-details .day-forecast-temp {
     color: var(--yellow);
+    width: 40px;
+    
 }
 
-section.five-day-forecast ul li .day-forecast-details .day-forecast-precipitation {
+section.five-day-forecast ul li .forecast-details-top-half .day-forecast-details .day-forecast-precipitation {
     color: var(--primary-blue);
+    width: 80px;
 }
 
-section.five-day-forecast ul li,
-section.five-day-forecast ul li div {
+section.five-day-forecast ul li .forecast-details-top-half,
+section.five-day-forecast ul li .forecast-details-top-half div {
     display: flex;
-    gap: 30px;
+    gap: 15px;
 }
 
 section.five-day-forecast ul li:not(.five-day-forecast ul li:last-child) {
@@ -224,4 +240,34 @@ section.five-day-forecast ul li:not(.five-day-forecast ul li:last-child) {
     border-bottom: 1px solid var(--grey-light);
     padding-bottom: var(--list-item-spacing);
     margin-bottom: var(--list-item-spacing);
+}
+
+section.five-day-forecast ul li .forecast-details-bottom-half {
+    height: 0px;
+    opacity: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 0;
+    color: var(--grey-medium);
+    font-size: 0.9rem;
+    transition: all 0.2s, opacity 0.5s;
+}
+
+section.five-day-forecast ul li .forecast-details-bottom-half.expand {
+    padding-top: var(--primary-padding);
+    height: 50px;
+    opacity: 100%;
+}
+
+footer {
+    padding: var(--primary-padding);
+}
+
+footer > a {
+    text-decoration: none;
+    color: var(--grey-medium);
+    display: inline-block;
+    width: 100%;
+    text-align: center;
 }

@@ -8,9 +8,11 @@ export const getLocalDate = (dt, timezoneOffset) => {
 export const getDateInfo = date => {
   const localDateTime = date.format('LT');
   const localDateDayOfMonth = date.format('Do');
+  const localDateDayOfWeek = date.format('ddd');
 
   return {
     localDateTime,
-    localDateDayOfMonth
+    localDateDayOfMonth,
+    localDateDayOfWeek
   }
 }
