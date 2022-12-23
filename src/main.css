@@ -97,6 +97,7 @@ header .location-date-info {
     font-weight: 400;
     font-size: 1.2rem;
     align-self: center;
+    text-align: center;
 }
 
 header .location-date-info.error-msg {
@@ -183,7 +184,8 @@ section.five-day-forecast {
   flex-grow: 1;
 }
 
-section.five-day-forecast > h3 {
+section.five-day-forecast > h3,
+section.weather-maps > h3 {
     font-size: 1.5rem;
     margin-bottom: var(--primary-padding);
 }
@@ -260,6 +262,22 @@ section.five-day-forecast ul li .forecast-details-bottom-half.expand {
     opacity: 100%;
 }
 
+section.weather-maps .windy-section {
+    width: 50%;
+    height: 400px;
+}
+
+section.weather-maps .windy-section #windy {
+    width: 100%;
+    height: 100%;
+}
+
+section.weather-maps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 footer {
     padding: var(--primary-padding);
 }
@@ -270,4 +288,61 @@ footer > a {
     display: inline-block;
     width: 100%;
     text-align: center;
+}
+
+@media screen and (max-width: 450px) {
+    header .main-header-items h1 {
+        margin-bottom: 20px;
+    }
+
+    header .main-header-items {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    header .main-header-items .search-container {
+        width: 100%;
+    }
+
+    header .main-header-items .search-container input {
+        width: 80%
+    }
+
+    .weather-info-today .main-weather-info-container {
+        flex-direction: column;
+    }
+
+    .weather-info-today .minor-weather-info .minor-weather-info-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    section.five-day-forecast ul {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .five-day-forecast ul li .forecast-details-top-half {
+        flex-direction: column;
+    }
+
+    section.five-day-forecast ul li .forecast-details-bottom-half {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    section.five-day-forecast ul li .forecast-details-bottom-half.expand {
+        height: 100px;
+    }
+    
+    section.weather-maps .windy-section {
+        width: 100%;
+        height: 400px;
+    }
+    
+    section.weather-maps .windy-section #windy {
+        width: 100%;
+        height: 100%;
+    }
 }
