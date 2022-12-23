@@ -5,7 +5,7 @@ const OPENWEATHER_KEY = 'e139145074965f3b3ff44caf7777fb07';
 
 export const getGeographicalCoordinates = async (locationName, units) => {
     try {
-        const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${OPENWEATHER_KEY}&units=${units}`, {mode: 'cors'});
+        const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${OPENWEATHER_KEY}&units=${units}`, {mode: 'cors'});
         const data = await response.json();
         const lat = roundToDp(data[0].lat, 2);
         const lon = roundToDp(data[0].lon, 2);
@@ -42,7 +42,7 @@ export const getCurrentWeatherData = async (geographicalCoords, units) => {
 
 export const getWeatherIcon = iconID => {
     try {
-        return `http://openweathermap.org/img/wn/${iconID}@4x.png`;
+        return `https://openweathermap.org/img/wn/${iconID}@4x.png`;
     } catch (err) {
         console.log(err);
     }
