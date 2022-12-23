@@ -2,7 +2,6 @@ import { roundToDp } from './helperFuncs';
 import DOM from './DOM';
 
 const OPENWEATHER_KEY = 'e139145074965f3b3ff44caf7777fb07';
-const WINDY_KEY = '2awMRGkgQOECeIy2WTJeQxCUKVgHYa5W';
 
 export const getGeographicalCoordinates = async (locationName, units) => {
     try {
