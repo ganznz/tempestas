@@ -5,7 +5,7 @@ const OPENWEATHER_KEY = 'e139145074965f3b3ff44caf7777fb07';
 
 export const getGeographicalCoordinates = async (locationName, units) => {
     try {
-        const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${OPENWEATHER_KEY}&units=${units}`);
+        const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${OPENWEATHER_KEY}&units=${units}`, {mode: 'cors'});
         const data = await response.json();
         const lat = roundToDp(data[0].lat, 2);
         const lon = roundToDp(data[0].lon, 2);
@@ -19,7 +19,7 @@ export const getGeographicalCoordinates = async (locationName, units) => {
 export const getFiveDayForecastData = async (geographicalCoords, units) => {
     try {
         const [lat, lon] = geographicalCoords;
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=${units}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=${units}`, {mode: 'cors'});
         const data = await response.json();
         return data;
     } catch (err) {
@@ -31,7 +31,7 @@ export const getFiveDayForecastData = async (geographicalCoords, units) => {
 export const getCurrentWeatherData = async (geographicalCoords, units) => {
     try {
         const [lat, lon] = geographicalCoords;
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=${units}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_KEY}&units=${units}`, {mode: 'cors'});
         const data = await response.json();
         return data;
     } catch {
