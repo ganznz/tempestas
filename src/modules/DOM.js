@@ -1,7 +1,8 @@
 import { getLocalDate, getDateInfo } from './dates';
-import { getWeatherIcon, determineWindDirection } from './weatherData';
+import { getWeatherIcon, determineWindDirection } from './openWeatherData';
 import { roundToDp, convertToPercentage, iterateEventOverNodelist } from './helperFuncs';
 
+const mainHeaderItems = document.querySelector('.main-header-items');
 const locationDateInfo = document.querySelector('.location-date-info');
 
 const mainWeatherInfoContainer = document.querySelector('.main-weather-info-container');
