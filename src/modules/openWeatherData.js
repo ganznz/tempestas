@@ -11,7 +11,6 @@ export const getGeographicalCoordinates = async (locationName, units) => {
         const lon = roundToDp(data[0].lon, 2);
         return [lat, lon];
     } catch (err) {
-        DOM.renderHeaderInfoError();
         throw new Error((`${locationName} is an invalid location.`));
     }
 }
@@ -23,7 +22,6 @@ export const getFiveDayForecastData = async (geographicalCoords, units) => {
         const data = await response.json();
         return data;
     } catch (err) {
-        DOM.renderHeaderInfoError();
         throw new Error((`Unable to parse geographical coordinates. Check if you input a valid location.`));
     }
 }
@@ -35,7 +33,6 @@ export const getCurrentWeatherData = async (geographicalCoords, units) => {
         const data = await response.json();
         return data;
     } catch {
-        DOM.renderHeaderInfoError();
         throw new Error((`Unable to parse geographical coordinates. Check if you input a valid location.`));
     }
 }

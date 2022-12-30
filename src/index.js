@@ -17,23 +17,20 @@ let currentWeatherData;
 export const getGeographicalCoords = () => geographicalCoords;
 
 const getAllWeatherData = async (location, units) => {
-    try {
-        geographicalCoords = await getGeographicalCoordinates(location, units);
-        fiveDayForecastData = await getFiveDayForecastData(geographicalCoords, units);
-        currentWeatherData = await getCurrentWeatherData(geographicalCoords, units);
-    } catch (err) {
-        console.log(err);
-    }
+    geographicalCoords = await getGeographicalCoordinates(location, units);
+    fiveDayForecastData = await getFiveDayForecastData(geographicalCoords, units);
+    currentWeatherData = await getCurrentWeatherData(geographicalCoords, units);
 }
 
 const displayWeather = async (location, units) => {
     try {
-        await getAllWeatherData(location, units)
+        await getAllWeatherData(location, units);
         DOM.renderLocationHeaderInfo(currentWeatherData);
         DOM.renderWeatherTodayInfo(currentWeatherData);
         DOM.renderFiveDayForecast(fiveDayForecastData);
     } catch (err) {
         console.log(err);
+        DOM.renderHeaderInfoError();
     }
 }
 
@@ -47,6 +44,7 @@ locationInput.addEventListener('keydown', async e => {
         displayWeather(location, units);
     }
 });
+locationInput.addEventListener('focusout', e => displayWeather(location, units));
 
 
 // change units
